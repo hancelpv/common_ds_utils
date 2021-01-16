@@ -11,7 +11,7 @@ def timed(func):
     def _wrapper(*args, **kwargs):
         start = time.time()
         res = func(*args, **kwargs)
-        print.info(
+        print(
             f"Completed {func.__name__} in {time.time() - start:.3f} sec"
         )
         return res
