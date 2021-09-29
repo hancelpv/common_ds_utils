@@ -9,10 +9,17 @@ HERE = pathlib.Path(__file__).parent
 # The text of the README file
 README = (HERE / "README.md").read_text()
 
+import re
+
+def get_property(prop, project):
+    result = re.search(r'{}\s*=\s*[\'"]([^\'"]*)[\'"]'.format(prop), open(project + '/__init__.py').read())
+    return result.group(1)
+
+project_name = 'common_ds_utils'
 # This call to setup() does all the work
 setup(
     name="common_ds_utils",
-    version="1.0.3",
+    version=get_property('__version__', project_name),
     description="Utilies for Data Science Projects",
     long_description=README,
     long_description_content_type="text/markdown",
